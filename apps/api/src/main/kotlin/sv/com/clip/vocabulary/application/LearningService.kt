@@ -1,10 +1,13 @@
-package sv.com.clip.content
+package sv.com.clip.vocabulary.application
 
+import sv.com.clip.library.domain.ContentProcessor
+import sv.com.clip.vocabulary.domain.UserWord
+import sv.com.clip.vocabulary.domain.UserWordRepository
 import java.util.UUID
 
 class LearningService(
-  private val wordRepository: UserWordRepository,
-  private val contentProcessor: ContentProcessor
+    private val wordRepository: UserWordRepository,
+    private val contentProcessor: ContentProcessor
 ) {
 
   //Caso de uso: crear un nuevo "LingQ" (palabra guardada)
@@ -17,7 +20,7 @@ class LearningService(
     return wordRepository.save(newWord)
   }
 
-  fun processContent(url: String): String {
+    fun processContent(url: String): String {
     return "TODO"
   }
 

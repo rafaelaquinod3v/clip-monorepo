@@ -1,6 +1,6 @@
 src/main/kotlin/sv/com/clip
 │
-├── content/               <-- NUEVO: Gestión de fuentes originales
+├── library/               <-- Gestión de Fuentes (Videos, Libros, Noticias)
 │   ├── api/               <-- Endpoints para subir videos, scrapear noticias
 │   ├── application/       <-- Use Cases: "ProcessVideoContent", "ImportNews"
 │   ├── domain/            <-- Entities: ContentSource, MediaResource (Value Objects para URL, Duración)
@@ -12,16 +12,18 @@ src/main/kotlin/sv/com/clip
 │   ├── domain/            <-- Entities: Course, Lesson (solo referencias al ID del contenido)
 │   └── infrastructure/    <-- Persistencia de la estructura del curso
 │
-├── student/               <-- Módulo (Bounded Context): Gestión de Estudiantes
+├── student/               <-- Gestión de Estudiantes
 │   ├── api/
 │   ├── application/
 │   ├── domain/
 │   └── infrastructure/
 │
-├── progression/           <-- Módulo (Bounded Context): Gamificación/Progreso
+├── progression/           <-- Gamificación/Motivación (Puntos, Logros, Niveles, Rachas)
 │   ├── api/
 │   ├── application/
 │   ├── domain/
 │   └── infrastructure/
+│
+├── vocabulary/            <-- Conocimiento del alumno (Palabras, Análisis de texto)
 │
 └── shared/                <-- Kernel Diferido (Código común a módulos)

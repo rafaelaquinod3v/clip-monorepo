@@ -1,8 +1,6 @@
-package sv.com.clip.content.domain
+package sv.com.clip.library.domain
 
-import sv.com.clip.content.ContentType
-import sv.com.clip.content.TextAnalysisService
-import sv.com.clip.content.Token
+import sv.com.clip.library.application.TextAnalysisService
 import java.util.UUID
 
 class Content(
@@ -11,7 +9,7 @@ class Content(
     val rawText: String,
     val contentType: ContentType,
     val language: String = "en",
-    val tokens: MutableList<Token> = mutableListOf()
+    val tokens: MutableList<MediaToken> = mutableListOf()
 ) {
 
   fun processTokens(analyzer: TextAnalysisService) {
@@ -20,6 +18,6 @@ class Content(
     this.tokens.addAll(analyzedWords)
   }
 
-  fun getUniqueLemmas(): Set<String> = tokens.map { it.lemma }.toSet()
-    fun tokenize(): List<String> = rawText.split(Regex("\\W+")).filter { it.isNotBlank() }
+  //fun getUniqueLemmas(): Set<String> = tokens.map { it.rawText }.toSet()
+  fun tokenize(): List<String> = rawText.split(Regex("\\W+")).filter { it.isNotBlank() }
 }

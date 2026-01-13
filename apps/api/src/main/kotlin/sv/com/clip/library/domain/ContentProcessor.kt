@@ -1,4 +1,4 @@
-package sv.com.clip.content
+package sv.com.clip.library.domain
 
 interface ContentProcessor {
   // Servicio de dominio para procesar multimedia (IA o NLP)

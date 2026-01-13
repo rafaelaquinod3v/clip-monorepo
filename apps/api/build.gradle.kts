@@ -38,6 +38,16 @@ dependencies {
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testImplementation("org.springframework.modulith:spring-modulith-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+  // Importar el BOM para manejar versiones
+  implementation(platform("org.jmolecules:jmolecules-bom:2025.0.2")) // Verifica la última versión en 2026
+
+  // Conceptos básicos de DDD (Anotaciones)
+  implementation("org.jmolecules:jmolecules-ddd")
+
+  // Si usas Kotlin, puedes usar kMolecules para una mejor experiencia idiomática
+  implementation("org.jmolecules:kmolecules-ddd")
+  implementation("org.jmolecules.integrations:jmolecules-spring")
+  implementation("org.jmolecules.integrations:jmolecules-jpa")
 }
 
 dependencyManagement {
