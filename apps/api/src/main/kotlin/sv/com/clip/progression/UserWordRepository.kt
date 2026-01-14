@@ -1,5 +1,6 @@
-package sv.com.clip.vocabulary.domain
+package sv.com.clip.progression
 
+import sv.com.clip.progression.domain.UserWord
 import java.util.UUID
 
 interface UserWordRepository {
