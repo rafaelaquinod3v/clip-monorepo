@@ -50,3 +50,5 @@ __screenshots__/
 
 # Ignore Gradle build output directory
 build
+
+python_utils/venv/
