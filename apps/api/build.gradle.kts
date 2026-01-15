@@ -1,6 +1,7 @@
 plugins {
 	kotlin("jvm") version "2.2.21"
 	kotlin("plugin.spring") version "2.2.21"
+  kotlin("plugin.jpa") version "1.9.22"
 	id("org.springframework.boot") version "4.0.1"
 	id("io.spring.dependency-management") version "1.1.7"
 }
@@ -48,6 +49,51 @@ dependencies {
   implementation("org.jmolecules:kmolecules-ddd")
   implementation("org.jmolecules.integrations:jmolecules-spring")
   implementation("org.jmolecules.integrations:jmolecules-jpa")
+
+  // Driver oficial de PostgreSQL
+  runtimeOnly("org.postgresql:postgresql")
+
+  // Abstracción para persistencia de datos
+  implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+  implementation("com.opencsv:opencsv:5.9")
+
+  // pgvector para Java/Kotlin
+  implementation("com.pgvector:pgvector:0.1.6")
+  implementation("org.hibernate.orm:hibernate-vector:7.2.0.Final")
+
+  //implementation("com.pgvector:pgvector:0.2.0")
+
+
+  // Importar el BOM para gestionar versiones automáticamente
+  implementation(platform("ai.djl:bom:0.31.1")) // Versión estable en 2026
+
+  // API principal de DJL
+  implementation("ai.djl:api")
+
+  // Motor de PyTorch y sus archivos JNI
+  implementation("ai.djl.pytorch:pytorch-engine")
+
+  // ESTA ES LA CLAVE: Incluye los binarios nativos para que no intente descargarlos
+  // El clasificador "linux-x86_64" es para tu entorno WSL
+  runtimeOnly("ai.djl.pytorch:pytorch-native-cpu::linux-x86_64")
+
+  // Para procesamiento de texto (Embeddings)
+  implementation("ai.djl:model-zoo")
+  //implementation("ai.djl.pytorch:pytorch-jni")
+  // DJL para Embeddings Locales (Free)
+  //implementation("ai.djl:api:0.31.1")
+  implementation("ai.djl.huggingface:tokenizers:0.31.0")
+  //runtimeOnly("ai.djl.pytorch:pytorch-engine:0.31.0")
+ // runtimeOnly("ai.djl.pytorch:pytorch-native-cpu:2.1.1") // O gpu si prefieres
+  // Standard DJL PyTorch Engine
+  //implementation("ai.djl.pytorch:pytorch-engine:0.26.0") // Match your current DJL version
+
+  // Add the specific native library for your platform (Linux x86_64)
+  //implementation("ai.djl.pytorch:pytorch-native-cpu:2.1.1:linux-x86_64")
+
+  // Ensure the JNI adapter is present
+  //implementation("ai.djl.pytorch:pytorch-jni:0.26.0")
 }
 
 dependencyManagement {

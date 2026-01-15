@@ -24,6 +24,6 @@ src/main/kotlin/sv/com/clip
 │   ├── domain/
 │   └── infrastructure/
 │
-├── vocabulary/            <-- Conocimiento del alumno (Palabras, Análisis de texto)
+├── vocabulary/            <-- (Palabras, Análisis de texto)
 │
 └── shared/                <-- Kernel Diferido (Código común a módulos)
