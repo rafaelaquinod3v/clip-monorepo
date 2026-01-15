@@ -4,6 +4,7 @@ plugins {
   kotlin("plugin.jpa") version "1.9.22"
 	id("org.springframework.boot") version "4.0.1"
 	id("io.spring.dependency-management") version "1.1.7"
+  id("org.flywaydb.flyway") version "11.20.1"
 }
 
 group = "sv.com.clip"
@@ -29,10 +30,18 @@ repositories {
 extra["springModulithVersion"] = "2.0.1"
 
 dependencies {
+  // Dependencia principal de Flyway
+  implementation("org.flywaydb:flyway-core:11.20.1")
+
+  // IMPORTANTE: A partir de Flyway 10, debes añadir el módulo específico de tu base de datos
+  // Ejemplo para PostgreSQL o MySQL:
+  implementation("org.flywaydb:flyway-database-postgresql:11.20.1")
 	implementation("org.springframework.boot:spring-boot-starter-webmvc")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.springframework.modulith:spring-modulith-starter-core")
-	implementation("tools.jackson.module:jackson-module-kotlin")
+  implementation("org.springframework.modulith:spring-modulith-events-api")
+  runtimeOnly("org.springframework.modulith:spring-modulith-starter-jpa")
+  implementation("tools.jackson.module:jackson-module-kotlin")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")

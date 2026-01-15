@@ -6,13 +6,15 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import sv.com.clip.vocabulary.application.ports.inbount.AddWordsCommand
+import sv.com.clip.vocabulary.application.usecases.AddWordsCommandHandler
 import sv.com.clip.vocabulary.domain.model.Word
 import sv.com.clip.vocabulary.domain.repository.WordRepository
 import sv.com.clip.vocabulary.domain.valueObject.LanguageLevel
 
 @RestController
 @RequestMapping("/vocabulary")
-class WordsController(private val wordRepo: WordRepository) {
+class WordsController(private val wordRepo: WordRepository, private val handler: AddWordsCommandHandler) {
 
   @GetMapping("/words")
   fun getWords(): List<Word>{
@@ -39,6 +41,7 @@ class WordsController(private val wordRepo: WordRepository) {
         languageLevel = dto.languageLevel,
       )
     }
-    println(words)
+    handler.handle(AddWordsCommand(words))
+    //println(words)
   }
 }

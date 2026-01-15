@@ -12,6 +12,7 @@ class AddWordsCommandHandler(
   private val repo:WordRepository,
   private val eventPublisher: ApplicationEventPublisher
 ) {
+  // indispensable
   @Transactional
   fun handle(command: AddWordsCommand) {
     // Persistimos la colección de palabras
