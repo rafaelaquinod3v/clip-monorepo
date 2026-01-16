@@ -9,3 +9,6 @@ rootProject.name = "clip-monorepo"
 
 include("api") // Nombre simplificado para Gradle y Nx
 project(":api").projectDir = file("apps/api") // Ruta física real
+
+
+

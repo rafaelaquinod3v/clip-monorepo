@@ -30,12 +30,15 @@ repositories {
 extra["springModulithVersion"] = "2.0.1"
 
 dependencies {
-  // Dependencia principal de Flyway
-  implementation("org.flywaydb:flyway-core:11.20.1")
+  implementation("com.github.therealbush:translator:1.0.2")
+  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+
+  // El starter es OBLIGATORIO para que Spring auto-configure Flyway
+  implementation("org.springframework.boot:spring-boot-starter-flyway")
 
   // IMPORTANTE: A partir de Flyway 10, debes añadir el módulo específico de tu base de datos
   // Ejemplo para PostgreSQL o MySQL:
-  implementation("org.flywaydb:flyway-database-postgresql:11.20.1")
+  implementation("org.flywaydb:flyway-database-postgresql")
 	implementation("org.springframework.boot:spring-boot-starter-webmvc")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.springframework.modulith:spring-modulith-starter-core")

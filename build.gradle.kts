@@ -9,7 +9,11 @@ plugins {
  */
 
 allprojects {
-    apply {
-        plugin("dev.nx.gradle.project-graph")
-    }
+  repositories {
+    mavenCentral()
+    maven { url = uri("https://jitpack.io") }
+  }
+  apply {
+      plugin("dev.nx.gradle.project-graph")
+  }
 }
