@@ -2,7 +2,7 @@ package sv.com.clip.dictionary.domain.repository
 
 import sv.com.clip.dictionary.domain.model.Word
 import sv.com.clip.dictionary.domain.model.WordIdentifier
-import sv.com.clip.dictionary.domain.valueObject.LanguageLevel
+import sv.com.clip.dictionary.domain.valueObjects.LanguageLevel
 
 interface WordRepository {
   fun findById(id: WordIdentifier): Word?

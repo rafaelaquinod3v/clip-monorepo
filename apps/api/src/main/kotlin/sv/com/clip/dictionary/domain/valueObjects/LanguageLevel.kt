@@ -1,4 +1,4 @@
-package sv.com.clip.dictionary.domain.valueObject
+package sv.com.clip.dictionary.domain.valueObjects
 
 // (MCER/CEFR)
 enum class LanguageLevel(val description: String) {

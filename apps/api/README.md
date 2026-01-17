@@ -1,3 +1,32 @@
+1. Estrategia de "Caché de Vocabulario" (Control de Costos)
+
+Model Hibrido - Api fuente DB Cerebro
+Paso 1: El usuario busca una palabra.
+Paso 2: Tu sistema busca en tu propia base de datos (donde ya tienes almacenadas las palabras que otros usuarios han consultado antes).
+Paso 3: Si la palabra no existe, consultas la API, guardas el resultado en tu base de datos y se lo entregas al usuario.
+Resultado: Solo pagas por la consulta de una palabra una vez en toda la vida de tu app. Con el tiempo, tu dependencia de la API tiende a cero.
+
+2. Gestión del Progreso del Usuario (Dominio)
+   Para llevar el control de qué palabras conoce cada usuario, necesitas obligatoriamente tu propia base de datos. Las APIs no están diseñadas para guardar el historial de aprendizaje. Debes estructurar tu base de datos así:
+   Tabla de Palabras: Definición, nivel de dificultad (A1-C2), ejemplos.
+   Tabla de Progreso: ID del usuario, ID de la palabra, nivel de dominio (0-100%), fecha de último repaso.
+   Control: Esto te permite implementar algoritmos de Repetición Espaciada (SRS) como los de Anki, que son el estándar de oro en 2026 para el aprendizaje de idiomas.
+   Neo4j para que ???????
+Modelos de lenguaje
+locales Llama3 o Mistral
+
+3. Evitar la Dependencia Total (Vendor Lock-in)
+   Api: Google Oxford DeepL abstraccion
+4. Cuándo sí usar la API (Funciones Premium)
+   Puedes dejar la API activa solo para funciones de alto valor que justifiquen el costo:
+   Pronunciación por IA (Text-to-Speech): Donde la calidad de APIs como las de ElevenLabs es muy superior a lo que podrías procesar localmente.
+   Corrección de gramática en tiempo real: Para analizar párrafos enteros que el usuario escribe.
+   ElevenLabs vs chatterbox
+
+En resumen: Usa una API para poblar tu propia base de datos inicialmente, 
+pero construye tu propia arquitectura para gestionar el progreso de los usuarios 
+y el almacenamiento de términos. Así tienes el control total del activo más valioso de tu app: la data del aprendizaje de tus usuarios.
+
 src/main/kotlin/sv/com/clip
 │
 ├── library/               <-- Gestión de Fuentes (Videos, Libros, Noticias)

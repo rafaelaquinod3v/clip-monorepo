@@ -11,7 +11,7 @@ import sv.com.clip.dictionary.application.usecases.AddWordsCommandHandler
 import sv.com.clip.dictionary.application.usecases.WordQueryHandler
 import sv.com.clip.dictionary.domain.model.Word
 import sv.com.clip.dictionary.domain.repository.WordRepository
-import sv.com.clip.dictionary.domain.valueObject.LanguageLevel
+import sv.com.clip.dictionary.domain.valueObjects.LanguageLevel
 import sv.com.clip.dictionary.infrastructure.WordReadModel
 
 @RestController

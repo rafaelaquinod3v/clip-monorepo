@@ -1,4 +1,4 @@
-package sv.com.clip.dictionary.domain.valueObject
+package sv.com.clip.dictionary.domain.valueObjects
 
 // Universal Dependencies (UD)
 enum class PartOfSpeech(val description: String) {

@@ -1,7 +1,7 @@
 package sv.com.clip.dictionary.api
 
-import sv.com.clip.dictionary.domain.valueObject.LanguageLevel
-import sv.com.clip.dictionary.domain.valueObject.PartOfSpeech
+import sv.com.clip.dictionary.domain.valueObjects.LanguageLevel
+import sv.com.clip.dictionary.domain.valueObjects.PartOfSpeech
 
 data class WordRequest(
   val term: String,

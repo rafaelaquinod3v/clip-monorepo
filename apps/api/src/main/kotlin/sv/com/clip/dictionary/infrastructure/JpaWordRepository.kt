@@ -3,7 +3,7 @@ package sv.com.clip.dictionary.infrastructure
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
-import sv.com.clip.dictionary.domain.valueObject.LanguageLevel
+import sv.com.clip.dictionary.domain.valueObjects.LanguageLevel
 import java.util.UUID
 
 interface JpaWordRepository : JpaRepository<WordEntity, UUID> {

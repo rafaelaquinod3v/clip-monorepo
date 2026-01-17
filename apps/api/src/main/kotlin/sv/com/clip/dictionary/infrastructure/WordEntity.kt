@@ -10,8 +10,8 @@ import org.hibernate.annotations.JdbcTypeCode
 import org.hibernate.type.SqlTypes
 import sv.com.clip.dictionary.domain.model.Word
 import sv.com.clip.dictionary.domain.model.WordIdentifier
-import sv.com.clip.dictionary.domain.valueObject.LanguageLevel
-import sv.com.clip.dictionary.domain.valueObject.PartOfSpeech
+import sv.com.clip.dictionary.domain.valueObjects.LanguageLevel
+import sv.com.clip.dictionary.domain.valueObjects.PartOfSpeech
 import java.util.UUID
 
 @Entity

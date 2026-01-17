@@ -4,8 +4,8 @@ import com.opencsv.bean.CsvToBeanBuilder
 import org.springframework.stereotype.Service
 import sv.com.clip.dictionary.domain.model.Word
 import sv.com.clip.dictionary.domain.repository.WordRepository
-import sv.com.clip.dictionary.domain.valueObject.LanguageLevel
-import sv.com.clip.dictionary.domain.valueObject.PartOfSpeech
+import sv.com.clip.dictionary.domain.valueObjects.LanguageLevel
+import sv.com.clip.dictionary.domain.valueObjects.PartOfSpeech
 import java.io.FileReader
 
 @Service

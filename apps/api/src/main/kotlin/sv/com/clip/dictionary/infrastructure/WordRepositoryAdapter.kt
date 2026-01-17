@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository
 import sv.com.clip.dictionary.domain.model.Word
 import sv.com.clip.dictionary.domain.model.WordIdentifier
 import sv.com.clip.dictionary.domain.repository.WordRepository
-import sv.com.clip.dictionary.domain.valueObject.LanguageLevel
+import sv.com.clip.dictionary.domain.valueObjects.LanguageLevel
 
 @Repository
 class WordRepositoryAdapter (private val repo: JpaWordRepository, private val embedding: DjlEmbeddingAdapter): WordRepository {
