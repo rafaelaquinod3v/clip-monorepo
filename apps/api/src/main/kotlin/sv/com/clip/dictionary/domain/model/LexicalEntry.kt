@@ -4,18 +4,20 @@ import org.jmolecules.ddd.annotation.AggregateRoot
 import java.util.UUID
 
 @JvmInline
-value class Word2Id(val value: UUID)
+value class LexicalEntryId(val value: UUID)
 
 // la palabra base en cualquier idioma.
 // Es independiente del concepto; una palabra existe en un idioma y luego se vincula a conceptos.
+// Lexical Markup Framework ISO 24613
 @AggregateRoot // gestiona el termino el lemma y su fonetica -- es la entrada principal del vocabulario
-class Word2(
-  val wordId: Word2Id,
+class LexicalEntry(
+  val lexicalEntryId: LexicalEntryId,
+  val lemma: Lemma,
   val languageId: UUID,
-  val lemma: String,
-  val phonetic: String,
-  private val _wordConcepts: MutableList<WordConcept> = mutableListOf(),
+  val forms: List<Form>, // Lista unificada de lemma y wordForms
+  private val _senses: MutableList<Sense> = mutableListOf(),
 ) {
-  val wordConcepts: List<WordConcept> get() = _wordConcepts
+  val senses: List<Sense> get() = _senses.toList()
+  fun getLemma(): Lemma = forms.filterIsInstance<Lemma>().first()
 
 }
