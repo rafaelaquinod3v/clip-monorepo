@@ -1,7 +1,7 @@
 package sv.com.clip.dictionary.domain.valueObjects
 
 // (MCER/CEFR)
-enum class LanguageLevel(val description: String) {
+enum class CEFRLevel(val description: String) {
   A1("Beginner"),
   A2("Elementary"),
   B1("Intermediate"),

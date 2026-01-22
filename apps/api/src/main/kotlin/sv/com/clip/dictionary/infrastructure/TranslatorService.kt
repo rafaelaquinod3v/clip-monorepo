@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 // Spring AI (OpenAI/Claude)
 // DeepL
 @Service
-class TranslationService(private val translator: Translator) {
+class TranslatorService(private val translator: Translator) {
   fun translate(text: String): String = runBlocking {
       return@runBlocking try {
           val result = translator.translate(

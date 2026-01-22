@@ -32,6 +32,7 @@ extra["springModulithVersion"] = "2.0.1"
 dependencies {
   implementation("com.github.therealbush:translator:1.0.2")
   implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+  implementation("org.springframework.boot:spring-boot-starter-websocket")
 
   // El starter es OBLIGATORIO para que Spring auto-configure Flyway
   implementation("org.springframework.boot:spring-boot-starter-flyway")

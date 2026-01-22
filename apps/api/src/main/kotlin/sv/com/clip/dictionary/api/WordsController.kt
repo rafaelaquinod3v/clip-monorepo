@@ -11,7 +11,7 @@ import sv.com.clip.dictionary.application.usecases.AddWordsCommandHandler
 import sv.com.clip.dictionary.application.usecases.WordQueryHandler
 import sv.com.clip.dictionary.domain.model.Word
 import sv.com.clip.dictionary.domain.repository.WordRepository
-import sv.com.clip.dictionary.domain.valueObjects.LanguageLevel
+import sv.com.clip.dictionary.domain.valueObjects.CEFRLevel
 import sv.com.clip.dictionary.infrastructure.WordReadModel
 
 @RestController
@@ -23,10 +23,10 @@ class WordsController(private val queryHandler: WordQueryHandler, private val wo
     return wordRepo.findAll()
   }
 
-  @GetMapping("/words/languageLevel")
-  fun getWordByLanguageLevel(@RequestParam(required = true, defaultValue = "A1") languageLevel: LanguageLevel): List<Word> {
-    return wordRepo.findAllByLanguageLevel(languageLevel)
-  }
+  //@GetMapping("/words/languageLevel")
+  //fun getWordByLanguageLevel(@RequestParam(required = true, defaultValue = "A1") CEFRLevel: CEFRLevel): List<Word> {
+    ///return wordRepo.findAllByLanguageLevel(CEFRLevel)
+  //}
 
   @GetMapping("/words/similarity")
   fun getWordSimilarity(@RequestParam(required = true, defaultValue = "run") term: String): List<Word> {
@@ -40,7 +40,7 @@ class WordsController(private val queryHandler: WordQueryHandler, private val wo
         term = dto.term,
         lemma = dto.lemma,
         partOfSpeech = dto.partOfSpeech,
-        languageLevel = dto.languageLevel,
+        //cefrLevel = dto.CEFRLevel,
       )
     }
     handler.handle(AddWordsCommand(words))

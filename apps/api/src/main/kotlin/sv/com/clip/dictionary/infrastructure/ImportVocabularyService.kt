@@ -4,7 +4,7 @@ import com.opencsv.bean.CsvToBeanBuilder
 import org.springframework.stereotype.Service
 import sv.com.clip.dictionary.domain.model.Word
 import sv.com.clip.dictionary.domain.repository.WordRepository
-import sv.com.clip.dictionary.domain.valueObjects.LanguageLevel
+import sv.com.clip.dictionary.domain.valueObjects.CEFRLevel
 import sv.com.clip.dictionary.domain.valueObjects.PartOfSpeech
 import java.io.FileReader
 
@@ -31,7 +31,7 @@ class ImportVocabularyService(private val wordRepository: WordRepository, privat
       term = word.headword!!,
       lemma = word.lemma!!,
       partOfSpeech = PartOfSpeech.valueOf(word.pos!!),
-      languageLevel = LanguageLevel.valueOf(word.cefr!!)
+     // cefrLevel = CEFRLevel.valueOf(word.cefr!!)
     )) }
   }
 
@@ -45,4 +45,5 @@ class ImportVocabularyService(private val wordRepository: WordRepository, privat
       return false
     }
   }
+
 }

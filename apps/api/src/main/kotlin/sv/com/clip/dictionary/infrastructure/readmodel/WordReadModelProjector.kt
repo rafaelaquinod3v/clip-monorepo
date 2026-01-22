@@ -7,12 +7,12 @@ import kotlinx.coroutines.runBlocking
 import org.springframework.jdbc.core.simple.JdbcClient
 import org.springframework.modulith.events.ApplicationModuleListener
 import org.springframework.stereotype.Component
-import sv.com.clip.dictionary.infrastructure.TranslationService
+import sv.com.clip.dictionary.infrastructure.TranslatorService
 import sv.com.clip.dictionary.domain.events.WordsAddedEvent
 import sv.com.clip.dictionary.domain.repository.WordRepository
 
 @Component
-class WordReadModelProjector(val traslator: TranslationService, val repo: WordRepository, private val jdbcClient: JdbcClient) {
+class WordReadModelProjector(val traslator: TranslatorService, val repo: WordRepository, private val jdbcClient: JdbcClient) {
 
   @ApplicationModuleListener
   fun on(event: WordsAddedEvent) = runBlocking {

@@ -1,4 +1,13 @@
+server:
+  tomcat:
+    max-swallow-size: -1 # Permitir que el servidor "trague" la solicitud aunque exceda el límite
+
 spring:
+  servlet:
+    multipart:
+      max-file-size: 500MB # Tamaño máximo de un solo archivo (ejemplo: 50MB)
+      max-request-size: 500MB # Tamaño máximo total de la solicitud (archivos + datos)
+      file-size-threshold: 10MB # Umbral para escribir a disco en lugar de RAM
   application:
     name: api
   flyway:

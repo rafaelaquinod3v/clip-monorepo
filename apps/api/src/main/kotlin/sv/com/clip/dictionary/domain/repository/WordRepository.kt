@@ -2,7 +2,7 @@ package sv.com.clip.dictionary.domain.repository
 
 import sv.com.clip.dictionary.domain.model.Word
 import sv.com.clip.dictionary.domain.model.WordIdentifier
-import sv.com.clip.dictionary.domain.valueObjects.LanguageLevel
+import sv.com.clip.dictionary.domain.valueObjects.CEFRLevel
 
 interface WordRepository {
   fun findById(id: WordIdentifier): Word?
@@ -12,5 +12,5 @@ interface WordRepository {
   fun findAll(): List<Word>
   fun findAllById(ids: List<WordIdentifier>): List<Word>
   fun findByTermSimilarity(term: String): List<Word>
-  fun findAllByLanguageLevel(languageLevel: LanguageLevel): List<Word>
+  //fun findAllByLanguageLevel(cefrLevel: CEFRLevel): List<Word>
 }

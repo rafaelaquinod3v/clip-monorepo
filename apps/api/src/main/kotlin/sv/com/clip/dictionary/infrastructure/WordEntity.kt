@@ -10,7 +10,7 @@ import org.hibernate.annotations.JdbcTypeCode
 import org.hibernate.type.SqlTypes
 import sv.com.clip.dictionary.domain.model.Word
 import sv.com.clip.dictionary.domain.model.WordIdentifier
-import sv.com.clip.dictionary.domain.valueObjects.LanguageLevel
+import sv.com.clip.dictionary.domain.valueObjects.CEFRLevel
 import sv.com.clip.dictionary.domain.valueObjects.PartOfSpeech
 import java.util.UUID
 
@@ -28,8 +28,8 @@ class WordEntity(
   @Enumerated(EnumType.STRING)
   var partOfSpeech: PartOfSpeech,
 
-  @Enumerated(EnumType.STRING)
-  var languageLevel: LanguageLevel,
+  //@Enumerated(EnumType.STRING)
+  //var cefrLevel: CEFRLevel,
 
   // El campo para los embeddings (384 dimensiones para MiniLM)
   // Definimos columnDefinition para que SQL sepa que es un 'vector'
@@ -44,7 +44,7 @@ class WordEntity(
     term = this.term,
     lemma = this.lemma,
     partOfSpeech = this.partOfSpeech,
-    languageLevel = this.languageLevel
+    //cefrLevel = this.cefrLevel
   )
 
   companion object {
@@ -54,7 +54,7 @@ class WordEntity(
       term = word.term,
       lemma = word.lemma,
       partOfSpeech = word.partOfSpeech,
-      languageLevel = word.languageLevel
+      //cefrLevel = word.cefrLevel
     )
   }
 }

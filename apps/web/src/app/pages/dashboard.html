@@ -1,0 +1,19 @@
+<p>dashboard works!</p>
+<!-- app.component.html -->
+<!-- <input type="file" (change)="onFileSelected($event)">
+<button (click)="onUpload()" [disabled]="!selectedFile">Subir Archivo</button> -->
+
+<!-- app.component.html -->
+<div class="upload-container">
+  <input type="file" (change)="onFileSelected($event)">
+  <button (click)="onUpload()">Subir</button>
+
+  <!-- Barra de progreso con HTML5 -->
+  <div *ngIf="progress > 0">
+    <progress [value]="progress" max="100"></progress>
+    <span>{{ progress }}%</span>
+  </div>
+
+  <p *ngIf="mensaje">{{ mensaje }}</p>
+</div>
+

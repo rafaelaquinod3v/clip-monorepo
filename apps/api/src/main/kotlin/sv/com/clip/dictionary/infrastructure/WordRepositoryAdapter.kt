@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository
 import sv.com.clip.dictionary.domain.model.Word
 import sv.com.clip.dictionary.domain.model.WordIdentifier
 import sv.com.clip.dictionary.domain.repository.WordRepository
-import sv.com.clip.dictionary.domain.valueObjects.LanguageLevel
+import sv.com.clip.dictionary.domain.valueObjects.CEFRLevel
 
 @Repository
 class WordRepositoryAdapter (private val repo: JpaWordRepository, private val embedding: DjlEmbeddingAdapter): WordRepository {
@@ -52,7 +52,8 @@ class WordRepositoryAdapter (private val repo: JpaWordRepository, private val em
     return repo.findByTermSimilarity(queryVector, 5).map { it.toDomain() }
   }
 
-  override fun findAllByLanguageLevel(languageLevel: LanguageLevel): List<Word> {
-    return repo.findAllByLanguageLevel(languageLevel).map { it.toDomain() }
-  }
+ //7 override fun findAllByLanguageLevel(CEFRLevel: CEFRLevel): List<Word> {
+    //return repo.findAllByLanguageLevel(CEFRLevel).map { it.toDomain() }
+  //
+  //}
 }
