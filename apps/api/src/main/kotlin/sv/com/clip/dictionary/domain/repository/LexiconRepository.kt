@@ -1,12 +1,15 @@
 package sv.com.clip.dictionary.domain.repository
 
-import org.springframework.stereotype.Repository
-import sv.com.clip.dictionary.domain.model.LanguageId
+import org.jmolecules.ddd.annotation.Repository
 import sv.com.clip.dictionary.domain.model.LexicalEntry
+import sv.com.clip.dictionary.domain.model.Lexicon
+import sv.com.clip.dictionary.domain.model.LexiconId
+import sv.com.clip.dictionary.domain.valueObjects.Language
 
 @Repository
-class LexiconRepository {
-  fun findEntriesByPivotsAndLanguage(pivots: List<String>, language : LanguageId): List<LexicalEntry> {
-    return emptyList()
-  }
+internal interface LexiconRepository {
+  fun findEntriesByPivotsAndLanguage(pivots: List<String>, lang : LexiconId): List<LexicalEntry>;
+  fun save(lexicon: Lexicon) : Lexicon
+  fun findByLanguage(language: Language) : Lexicon?
+  fun existsByLanguage(language: Language): Boolean
 }

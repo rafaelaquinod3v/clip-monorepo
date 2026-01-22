@@ -7,5 +7,5 @@ data class WordRequest(
   val term: String,
   val lemma: String,
   val partOfSpeech: PartOfSpeech,
-  val CEFRLevel: CEFRLevel
+  //val CEFRLevel: CEFRLevel
 )

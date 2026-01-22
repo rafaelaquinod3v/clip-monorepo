@@ -14,6 +14,7 @@ export class Dashboard {
   selectedFile: File | null = null;
   progress: number = 0;
   mensaje: string = '';
+  progressData: any = null;
   constructor(private fileService: FileOmwService, private cd: ChangeDetectorRef, private progressOmwService: ProgressOmwService) {}
 
   onFileSelected(event: any) {
@@ -32,7 +33,7 @@ export class Dashboard {
     }
     this.progress = 1; // Inicia en 1 para que el *ngIf muestre la barra inmediatamente
     this.mensaje = 'Subiendo...';
-    this.progressOmwService.connect();
+
     if (this.selectedFile) {
       this.fileService.upload(this.selectedFile).subscribe({
         next: (event: any) => {
@@ -45,9 +46,10 @@ export class Dashboard {
           }
           else if (event instanceof HttpResponse || event.type === HttpEventType.Response) {
             this.progress = 100; // Forzamos el 100% al recibir respuesta
-            this.mensaje = '¡Archivo subido y procesado con éxito!';
+            this.mensaje = 'Archivo subido. Procesado datos...';
             this.selectedFile = null; // Limpiamos la selección
-            this.cd.detectChanges();
+            //
+            this.startSocketTracking();
           }
         },
         error: (err) => {
@@ -55,13 +57,22 @@ export class Dashboard {
           this.progress = 0;
         }
       });
-      this.progressOmwService.progressSubject.subscribe((data : any) => {
-        //this.progress = data.percentage;
-        console.log(`Procesado ${data.current} de ${data.total}`);
-      });
-
-
 
     }
+  }
+
+  private startSocketTracking() {
+    this.progressOmwService.connect();
+    this.progressOmwService.progress$.subscribe((data : any) => {
+      this.progressData = {
+        ...data,
+        percentage: Number(data.percentage) || 0,
+        current: Number(data.current) || 0,
+        total: Number(data.total) || 100
+      };
+      console.log(`Procesado ${data.current} de ${data.total}`);
+      if (data.status === 'completed') this.progressOmwService.disconnect();
+      this.cd.detectChanges();
+    });
   }
 }

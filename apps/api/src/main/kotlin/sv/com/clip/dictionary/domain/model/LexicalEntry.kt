@@ -15,7 +15,7 @@ class LexicalEntry(
   val lexicalEntryId: LexicalEntryId,
   val sourceId: String, // OMW WordNet 3.0
   val lemma: String,
-  val languageId: LanguageId,
+  val languageId: LexiconId,
   val partOfSpeech: PartOfSpeech,
   // Representa las formas de la palabra (p. ej. lema, variantes)
   private val _forms: List<Form> = mutableListOf(), // Lista unificada de lemma y wordForms // bank, banks

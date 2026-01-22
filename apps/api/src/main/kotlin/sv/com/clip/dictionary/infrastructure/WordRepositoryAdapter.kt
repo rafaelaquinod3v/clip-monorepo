@@ -7,7 +7,7 @@ import sv.com.clip.dictionary.domain.repository.WordRepository
 import sv.com.clip.dictionary.domain.valueObjects.CEFRLevel
 
 @Repository
-class WordRepositoryAdapter (private val repo: JpaWordRepository, private val embedding: DjlEmbeddingAdapter): WordRepository {
+internal class WordRepositoryAdapter (private val repo: JpaWordRepository, private val embedding: DjlEmbeddingAdapter): WordRepository {
   override fun findById(id: WordIdentifier): Word? {
     return repo.findById(id.uuid)
             .map { it.toDomain() }

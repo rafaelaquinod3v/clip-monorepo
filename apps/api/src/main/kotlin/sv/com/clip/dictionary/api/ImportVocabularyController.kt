@@ -90,14 +90,16 @@ class ImportVocabularyController(
         while (it.nextToken() == JsonToken.START_OBJECT) {
           // Mapeo selectivo del objeto actual
           val item = objectMapper.readTree<com.fasterxml.jackson.databind.JsonNode>(it)
-
+          println(item.toString())
           // Simulación de guardado y espera
-          delay(100)
+          //delay(10)
           current++
 
           // Cálculo y envío de progreso
           val percent = (current.toDouble() / total * 100).toInt()
-          sendUpdate("processing", current, total, percent = percent)
+          if (current % 100 == 0 || current == total) { // Throttling
+            sendUpdate("processing", current, total, percent = percent)
+          }
         }
       }
     }

@@ -1,19 +1,46 @@
-<p>dashboard works!</p>
-<!-- app.component.html -->
-<!-- <input type="file" (change)="onFileSelected($event)">
-<button (click)="onUpload()" [disabled]="!selectedFile">Subir Archivo</button> -->
+<div class="main-container">
+  <div class="mat-card">
+    <h2 class="mat-title">Procesador de Archivos JSON</h2>
+    
+    <!-- SECCIÓN 1: SELECCIÓN Y SUBIDA -->
+    <div class="upload-section">
+      <label class="custom-file-upload">
+        <input type="file" (change)="onFileSelected($event)">
+        <span>{{ selectedFile ? selectedFile.name : 'Seleccionar archivo' }}</span>
+      </label>
+      
+      <button class="mat-button-primary" (click)="onUpload()" [disabled]="!selectedFile">
+        Subir
+      </button>
+    </div>
 
-<!-- app.component.html -->
-<div class="upload-container">
-  <input type="file" (change)="onFileSelected($event)">
-  <button (click)="onUpload()">Subir</button>
+    <!-- BARRA 1: PROGRESO DE SUBIDA (XHR/HTTP) -->
+    <div *ngIf="progress > 0" class="upload-progress-container">
+      <div class="progress-labels">
+        <small>Subiendo archivo...</small>
+        <small>{{ progress }}%</small>
+      </div>
+      <progress [value]="progress" max="100" class="mat-progress upload-bar"></progress>
+    </div>
 
-  <!-- Barra de progreso con HTML5 -->
-  <div *ngIf="progress > 0">
-    <progress [value]="progress" max="100"></progress>
-    <span>{{ progress }}%</span>
+    <hr *ngIf="progressData" class="divider">
+
+    <!-- BARRA 2: PROGRESO DE PROCESAMIENTO (SOCKETS) -->
+    <div *ngIf="progressData" class="progress-wrapper">
+      <div class="progress-header">
+        <span class="status-tag" [ngClass]="progressData.status">
+          {{ progressData.status }}
+        </span>
+        <span class="count-text">{{ progressData.current }} de {{ progressData.total }}</span>
+      </div>
+      
+      <progress [value]="progressData.percentage" max="100" class="mat-progress processing-bar"></progress>
+      
+      <div class="progress-footer">
+        <span class="percentage-label">Procesando contenido: {{ progressData.percentage }}%</span>
+      </div>
+    </div>
+
+    <p *ngIf="mensaje" class="mat-hint">{{ mensaje }}</p>
   </div>
-
-  <p *ngIf="mensaje">{{ mensaje }}</p>
 </div>
-
