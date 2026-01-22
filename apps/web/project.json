@@ -20,7 +20,10 @@
             "input": "apps/web/public"
           }
         ],
-        "styles": ["apps/web/src/styles.scss"]
+        "styles": ["apps/web/src/styles.scss"],
+        "scripts": [
+          "apps/web/src/polyfills-global.js"
+        ]
       },
       "configurations": {
         "production": {

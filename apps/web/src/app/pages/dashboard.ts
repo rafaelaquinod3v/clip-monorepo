@@ -2,6 +2,7 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FileOmwService } from '../services/file-omw-service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { ProgressOmwService } from '../services/progress-omw-service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,7 @@ export class Dashboard {
   selectedFile: File | null = null;
   progress: number = 0;
   mensaje: string = '';
-  constructor(private fileService: FileOmwService, private cd: ChangeDetectorRef) {}
+  constructor(private fileService: FileOmwService, private cd: ChangeDetectorRef, private progressOmwService: ProgressOmwService) {}
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
@@ -31,6 +32,7 @@ export class Dashboard {
     }
     this.progress = 1; // Inicia en 1 para que el *ngIf muestre la barra inmediatamente
     this.mensaje = 'Subiendo...';
+    this.progressOmwService.connect();
     if (this.selectedFile) {
       this.fileService.upload(this.selectedFile).subscribe({
         next: (event: any) => {
@@ -53,6 +55,13 @@ export class Dashboard {
           this.progress = 0;
         }
       });
+      this.progressOmwService.progressSubject.subscribe((data : any) => {
+        //this.progress = data.percentage;
+        console.log(`Procesado ${data.current} de ${data.total}`);
+      });
+
+
+
     }
   }
 }
