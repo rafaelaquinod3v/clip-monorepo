@@ -6,4 +6,5 @@ import java.util.UUID
 
 interface JpaLexiconRepository : JpaRepository<LexiconEntity, UUID> {
   fun existsByLang(lang: Language): Boolean
+  fun findByLang(lang: Language): LexiconEntity?
 }

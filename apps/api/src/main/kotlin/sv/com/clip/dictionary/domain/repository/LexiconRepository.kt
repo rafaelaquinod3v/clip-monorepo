@@ -8,8 +8,6 @@ import sv.com.clip.dictionary.domain.valueObjects.Language
 
 @Repository
 internal interface LexiconRepository {
-  fun findEntriesByPivotsAndLanguage(pivots: List<String>, lang : LexiconId): List<LexicalEntry>;
   fun save(lexicon: Lexicon) : Lexicon
-  fun findByLanguage(language: Language) : Lexicon?
   fun existsByLanguage(language: Language): Boolean
 }

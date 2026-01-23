@@ -27,6 +27,38 @@ En resumen: Usa una API para poblar tu propia base de datos inicialmente,
 pero construye tu propia arquitectura para gestionar el progreso de los usuarios 
 y el almacenamiento de términos. Así tienes el control total del activo más valioso de tu app: la data del aprendizaje de tus usuarios.
 
+src/main/kotlin/sv/com/clip/vocabulary/          <-- Raíz del Módulo (API Pública)
+│
+├── [Público] VocabularyCreator.kt               <-- Interfaz (Caso de Uso / Command)
+├── [Público] VocabularyQueries.kt               <-- Interfaz (Query / Lectura)
+│
+├── domain/                                      <-- El Corazón (Puro, sin Spring)
+│   ├── model/
+│   │   ├── Lexicon.kt                           <-- @AggregateRoot
+│   │   ├── LexiconId.kt                         <-- Value Object
+│   │   └── Language.kt                          <-- Enum/VO
+│   ├── repository/
+│   │   └── internal LexiconRepository.kt        <-- Interfaz (Puerto de persistencia)
+│   └── services/
+│       └── internal LexiconRegistry.kt          <-- Servicio de Dominio (Invariantes)
+│
+├── application/                                 <-- Orquestación (Casos de Uso)
+│   ├── internal CreateLexiconUseCase.kt         <-- Implementa VocabularyCreator
+│   └── internal LexiconQueryService.kt          <-- Implementa VocabularyQueries
+│
+├── infrastructure/                              <-- Detalle técnico (Spring, JPA)
+│   ├── persistence/
+│   │   ├── LexiconEntity.kt                     <-- JPA Entity (implementa Persistable)
+│   │   ├── SpringDataLexiconRepository.kt       <-- Spring Data Interface
+│   │   └── LexiconRepositoryAdapter.kt          <-- Implementa LexiconRepository
+│   └── web/
+│       └── LexiconController.kt                 <-- @RestController
+│
+└── config/                                      <-- Cableado
+└── internal VocabularyModuleConfig.kt       <-- @Configuration (Define @Beans)
+
+
+
 src/main/kotlin/sv/com/clip
 │
 ├── library/               <-- Gestión de Fuentes (Videos, Libros, Noticias)
