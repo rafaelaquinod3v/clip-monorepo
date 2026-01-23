@@ -14,7 +14,7 @@ Resultado: Solo pagas por la consulta de una palabra una vez en toda la vida de 
    Neo4j para que ???????
 Modelos de lenguaje
 locales Llama3 o Mistral
-
+sudo systemctl start ollama
 3. Evitar la Dependencia Total (Vendor Lock-in)
    Api: Google Oxford DeepL abstraccion
 4. Cuándo sí usar la API (Funciones Premium)

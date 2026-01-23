@@ -12,6 +12,7 @@ allprojects {
   repositories {
     mavenCentral()
     maven { url = uri("https://jitpack.io") }
+    maven { url = uri("https://repo.spring.io") }
   }
   apply {
       plugin("dev.nx.gradle.project-graph")

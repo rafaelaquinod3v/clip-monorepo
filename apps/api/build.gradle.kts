@@ -29,7 +29,9 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter-websocket")
   implementation("org.springframework:spring-messaging")
   // --- Spring & Kotlin Core ---
-  implementation("org.springframework.boot:spring-boot-starter-webmvc")
+  // Fuerza la presencia de la infraestructura del cliente HTTP
+  implementation("org.springframework.boot:spring-boot-starter-web")
+//  implementation("org.springframework:spring-web")
   implementation("org.jetbrains.kotlin:kotlin-reflect")
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin") // Corregido: antes tenías tools.jackson
 
@@ -38,6 +40,8 @@ dependencies {
   implementation("ai.djl:api")
   implementation("ai.djl.pytorch:pytorch-engine")
   implementation("ai.djl.huggingface:tokenizers")
+//  implementation("org.springframework.ai:spring-ai-ollama-spring-boot-starter")
+  implementation("org.springframework.ai:spring-ai-starter-model-ollama")
 
   // FORZAR NATURALEZA LINUX PARA WSL
   // Esto evita que busque .dll de Windows y use .so de Linux
@@ -78,4 +82,11 @@ dependencies {
   testImplementation("org.springframework.modulith:spring-modulith-starter-test")
   testImplementation("org.springframework.boot:spring-boot-starter-test")
   testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+}
+dependencyManagement {
+  imports {
+    // Usa la versión más reciente disponible en 2026
+//    mavenBom("org.springframework.ai:spring-ai-bom:1.0.0-M5")
+    mavenBom("org.springframework.ai:spring-ai-bom:2.0.0-M1")
+  }
 }
