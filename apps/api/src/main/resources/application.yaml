@@ -8,7 +8,8 @@ spring:
       base-url: http://localhost:11434
       chat:
         options:
-          model: llama3
+          model: gemma2:2b #qwen2.5:1.5b #llama3
+          temperature: 0.2 #0.3 # Baja temperatura para traducciones más precisas
   servlet:
     multipart:
       max-file-size: 500MB # Tamaño máximo de un solo archivo (ejemplo: 50MB)

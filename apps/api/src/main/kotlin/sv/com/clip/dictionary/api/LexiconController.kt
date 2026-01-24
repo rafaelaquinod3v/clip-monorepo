@@ -1,6 +1,5 @@
 package sv.com.clip.dictionary.api
 
-import org.springframework.ai.chat.client.ChatClient
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -8,16 +7,18 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import sv.com.clip.dictionary.application.services.TranslationService
 import sv.com.clip.dictionary.domain.model.Lexicon
 import sv.com.clip.dictionary.domain.queries.LexiconProvider
 import sv.com.clip.dictionary.domain.services.LexiconCreator
+import sv.com.clip.dictionary.domain.valueObjects.Language
 
 @RestController
 @RequestMapping("/lexicons")
 class LexiconController(
   private val lexiconService: LexiconCreator,
   private val lexiconProvider: LexiconProvider,
-  private val chatClientBuilder: ChatClient.Builder
+  private val translationService: TranslationService,
 ) {
 
   @PostMapping
@@ -31,13 +32,12 @@ class LexiconController(
     return lexiconProvider.findAll()
   }
 
-  private val chatClient = chatClientBuilder.build()
-//
   @GetMapping("/translate")
-  fun translate(@RequestParam("text") text: String): String? {
-    return chatClient.prompt()
-      .user("Traduce al inglés y dame un ejemplo: $text")
-      .call()
-      .content()
+  fun translate(
+    @RequestParam("text") text: String,
+    @RequestParam("sourceLang") sourceLang: Language,
+    @RequestParam("targetLang") targetLang: Language,
+  ): String? {
+    return translationService.translate(text, sourceLang, targetLang)
   }
 }
