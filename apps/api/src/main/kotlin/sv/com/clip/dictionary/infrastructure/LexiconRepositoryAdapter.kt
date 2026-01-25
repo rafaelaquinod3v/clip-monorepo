@@ -7,6 +7,8 @@ import sv.com.clip.dictionary.domain.model.LexiconId
 import sv.com.clip.dictionary.domain.queries.LexiconProvider
 import sv.com.clip.dictionary.domain.repository.LexiconRepository
 import sv.com.clip.dictionary.domain.valueObjects.Language
+import sv.com.clip.dictionary.infrastructure.persistence.jpa.LexiconEntity
+import sv.com.clip.dictionary.infrastructure.persistence.repository.JpaLexiconRepository
 
 @Repository
 internal class LexiconRepositoryAdapter(

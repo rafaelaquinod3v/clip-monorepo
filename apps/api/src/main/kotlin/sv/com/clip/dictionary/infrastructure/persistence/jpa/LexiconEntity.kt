@@ -1,10 +1,12 @@
-package sv.com.clip.dictionary.infrastructure
+package sv.com.clip.dictionary.infrastructure.persistence.jpa
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
 import jakarta.persistence.Id
+import jakarta.persistence.PostLoad
+import jakarta.persistence.PostPersist
 import jakarta.persistence.Table
 import jakarta.persistence.UniqueConstraint
 import org.springframework.data.domain.Persistable
@@ -16,10 +18,10 @@ import java.util.UUID
 @Entity
 @Table(name = "lexicons", uniqueConstraints = [UniqueConstraint(columnNames = ["lang"])])
 class LexiconEntity(
-  @Id
+    @Id
   @Column(columnDefinition = "UUID")
   private val id: UUID,
-  @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
   @Column(unique = true, nullable = false)
   val lang: Language,
 ) : Persistable<UUID> {
@@ -34,8 +36,8 @@ class LexiconEntity(
     this.isNewRecord = false
   }
   // Callback de JPA que se ejecuta después de cargar de la BD
-  @jakarta.persistence.PostLoad
-  @jakarta.persistence.PostPersist
+  @PostLoad
+  @PostPersist
   fun markNotNewAfterLoad() {
     this.isNewRecord = false
   }

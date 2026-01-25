@@ -22,8 +22,6 @@ extensions.configure<JavaPluginExtension> {
   }
 }
 
-// ... repositories y configurations se mantienen igual ...
-
 dependencies {
   // WebSockets y Mensajería STOMP
   implementation("org.springframework.boot:spring-boot-starter-websocket")
@@ -31,7 +29,6 @@ dependencies {
   // --- Spring & Kotlin Core ---
   // Fuerza la presencia de la infraestructura del cliente HTTP
   implementation("org.springframework.boot:spring-boot-starter-web")
-//  implementation("org.springframework:spring-web")
   implementation("org.jetbrains.kotlin:kotlin-reflect")
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin") // Corregido: antes tenías tools.jackson
 
@@ -40,7 +37,6 @@ dependencies {
   implementation("ai.djl:api")
   implementation("ai.djl.pytorch:pytorch-engine")
   implementation("ai.djl.huggingface:tokenizers")
-//  implementation("org.springframework.ai:spring-ai-ollama-spring-boot-starter")
   implementation("org.springframework.ai:spring-ai-starter-model-ollama")
 
   // FORZAR NATURALEZA LINUX PARA WSL
@@ -86,7 +82,6 @@ dependencies {
 dependencyManagement {
   imports {
     // Usa la versión más reciente disponible en 2026
-//    mavenBom("org.springframework.ai:spring-ai-bom:1.0.0-M5")
     mavenBom("org.springframework.ai:spring-ai-bom:2.0.0-M1")
   }
 }

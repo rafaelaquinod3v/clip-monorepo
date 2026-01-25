@@ -1,6 +1,6 @@
-package sv.com.clip.vocabulary.domain
+package sv.com.clip.learning.domain
 
-import sv.com.clip.vocabulary.WordStatus
+import sv.com.clip.learning.WordStatus
 import java.util.UUID
 
 class UserWord(

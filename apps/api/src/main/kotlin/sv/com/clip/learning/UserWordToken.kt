@@ -1,3 +1,3 @@
-package sv.com.clip.vocabulary
+package sv.com.clip.learning
 
 class UserWordToken(val term: String, val lemma: String, val partOfSpeech: String) {}

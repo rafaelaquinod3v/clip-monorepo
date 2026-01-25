@@ -1,6 +1,6 @@
-package sv.com.clip.vocabulary
+package sv.com.clip.learning
 
-import sv.com.clip.vocabulary.domain.UserWord
+import sv.com.clip.learning.domain.UserWord
 import java.util.UUID
 
 interface UserWordRepository {
