@@ -5,7 +5,7 @@ import sv.com.clip.dictionary.domain.valueObjects.Language
 import sv.com.clip.dictionary.infrastructure.persistence.jpa.LexiconEntity
 import java.util.UUID
 
-interface JpaLexiconRepository : JpaRepository<LexiconEntity, UUID> {
+interface JpaLexiconEntityRepository : JpaRepository<LexiconEntity, UUID> {
   fun existsByLang(lang: Language): Boolean
   fun findByLang(lang: Language): LexiconEntity?
 }

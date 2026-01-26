@@ -1,18 +1,16 @@
 package sv.com.clip.dictionary.infrastructure
 
 import org.springframework.stereotype.Repository
-import sv.com.clip.dictionary.domain.model.LexicalEntry
 import sv.com.clip.dictionary.domain.model.Lexicon
-import sv.com.clip.dictionary.domain.model.LexiconId
 import sv.com.clip.dictionary.domain.queries.LexiconProvider
 import sv.com.clip.dictionary.domain.repository.LexiconRepository
 import sv.com.clip.dictionary.domain.valueObjects.Language
 import sv.com.clip.dictionary.infrastructure.persistence.jpa.LexiconEntity
-import sv.com.clip.dictionary.infrastructure.persistence.repository.JpaLexiconRepository
+import sv.com.clip.dictionary.infrastructure.persistence.repository.JpaLexiconEntityRepository
 
 @Repository
 internal class LexiconRepositoryAdapter(
-  private val repository : JpaLexiconRepository
+  private val repository : JpaLexiconEntityRepository
 ) : LexiconRepository, LexiconProvider {
 //  override fun findEntriesByPivotsAndLanguage(
 //    pivots: List<String>,
