@@ -26,19 +26,28 @@ spring:
     username: clip_user
     password: clip_pass
     driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
   jpa:
     hibernate:
       ddl-auto: update #validate #update
     show-sql: true
     properties:
       hibernate:
+        session:
+          events:
+            log:
+              LOG_QUERIES_SLOWER_THAN_MS: 100 # Loguea queries que tarden más de 100ms
         dialect: org.hibernate.dialect.PostgreSQLDialect
         order_inserts: true
         order_updates: true
         jdbc:
           batch_size: 100
+        generate_statistics: true # Muestra cuánto tarda cada query real en SQL
 
 logging:
   level:
     org:
+      hibernate:
+        stat: DEBUG
       flywaydb: DEBUG

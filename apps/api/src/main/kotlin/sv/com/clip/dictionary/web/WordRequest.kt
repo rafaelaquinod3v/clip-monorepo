@@ -1,6 +1,5 @@
-package sv.com.clip.dictionary.api
+package sv.com.clip.dictionary.web
 
-import sv.com.clip.dictionary.domain.valueObjects.CEFRLevel
 import sv.com.clip.dictionary.domain.valueObjects.PartOfSpeech
 
 data class WordRequest(

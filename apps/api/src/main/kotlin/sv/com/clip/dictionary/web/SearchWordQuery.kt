@@ -1,3 +1,3 @@
-package sv.com.clip.dictionary.api
+package sv.com.clip.dictionary.web
 
 data class SearchWordQuery(val term: String)

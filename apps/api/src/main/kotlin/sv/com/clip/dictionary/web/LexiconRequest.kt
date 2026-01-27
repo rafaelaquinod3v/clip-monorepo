@@ -1,4 +1,4 @@
-package sv.com.clip.dictionary.api
+package sv.com.clip.dictionary.web
 
 import sv.com.clip.dictionary.domain.valueObjects.Language
 

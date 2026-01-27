@@ -1,4 +1,4 @@
-package sv.com.clip.dictionary.api
+package sv.com.clip.dictionary.web
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -11,7 +11,6 @@ import sv.com.clip.dictionary.application.usecases.AddWordsCommandHandler
 import sv.com.clip.dictionary.application.usecases.WordQueryHandler
 import sv.com.clip.dictionary.domain.model.Word
 import sv.com.clip.dictionary.domain.repository.WordRepository
-import sv.com.clip.dictionary.domain.valueObjects.CEFRLevel
 import sv.com.clip.dictionary.infrastructure.WordReadModel
 
 @RestController

@@ -1,4 +1,4 @@
-package sv.com.clip.dictionary.api
+package sv.com.clip.dictionary.web
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -16,12 +16,7 @@ import java.io.File
 @RequestMapping("/vocabulary")
 class ImportVocabularyController(
   private val service: ImportVocabularyService,
-//  private val messagingTemplate: SimpMessagingTemplate,
-//  private val objectMapper: ObjectMapper,
-//  private val lexiconProvider: LexiconProvider,
-//  private val lexicalEntryRepository: LexicalEntryRepository,
   ) {
-//  private val uploadScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
   @GetMapping("/import")
   fun importVocabulary(): Boolean {

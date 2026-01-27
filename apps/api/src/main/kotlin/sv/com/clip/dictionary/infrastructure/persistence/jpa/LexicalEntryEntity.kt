@@ -48,6 +48,7 @@ class LexicalEntryEntity(
   private val _forms: MutableList<FormEntity> = mutableListOf(),
 
   // Relación con SenseEntity (Hijas)
+    @org.hibernate.annotations.BatchSize(size = 30)
     @OneToMany(
     mappedBy = "lexicalEntryEntity",
     cascade = [CascadeType.ALL],
@@ -121,4 +122,11 @@ class LexicalEntryEntity(
   fun markNotNew() {
     this.isNewEntity = false
   }
+  override fun equals(other: Any?): Boolean {
+    if (this === other) return true
+    if (other !is LexicalEntryEntity) return false
+    return id == other.id
+  }
+
+  override fun hashCode(): Int = id.hashCode()
 }

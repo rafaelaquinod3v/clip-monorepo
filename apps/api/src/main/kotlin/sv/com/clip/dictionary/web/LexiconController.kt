@@ -1,4 +1,4 @@
-package sv.com.clip.dictionary.api
+package sv.com.clip.dictionary.web
 
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
