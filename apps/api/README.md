@@ -1,4 +1,12 @@
-1. Estrategia de "Caché de Vocabulario" (Control de Costos)
+ALTER TABLE event_publication
+ALTER COLUMN serialized_event TYPE TEXT;
+
+-- También es recomendable ampliar el listener_id si usas nombres de paquetes largos
+ALTER TABLE event_publication
+ALTER COLUMN listener_id TYPE VARCHAR(512);
+
+. 
+3. Estrategia de "Caché de Vocabulario" (Control de Costos)
 
 Model Hibrido - Api fuente DB Cerebro
 Paso 1: El usuario busca una palabra.

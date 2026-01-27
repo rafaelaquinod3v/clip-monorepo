@@ -11,20 +11,10 @@ import java.util.UUID
 internal class DictionaryService(
   private val lexicalEntryRepository: LexicalEntryRepository
 ) : DictionaryExternal{
-//  override fun getWords(words: Set<String>): List<WordDTO> {
-//    return  lexicalEntryRepository.findAllByLemmaIn(words).map { entity ->
-//      WordDTO(
-//        id = entity.id.value,
-//        definition = entity.lemma,
-//        word = entity.lemma,
-//      )
-//    }
-//  }
 
   @Transactional(readOnly = true)
   override fun getWords(words: Set<String>): List<WordDTO> {
-//  val entities = lexicalEntryRepository.findAllByLemmaIn(words)
-//  val entities = lexicalEntryRepository.findAllByLemmaInWithDetails(words)
+
     val entities = lexicalEntryRepository.findProjectionsByLemmaIn(words)
   return entities
     .groupBy { it.word } // Agrupar por el texto del lemma
