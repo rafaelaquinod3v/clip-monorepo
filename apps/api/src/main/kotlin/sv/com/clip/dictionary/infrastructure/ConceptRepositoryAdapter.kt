@@ -15,6 +15,10 @@ class ConceptRepositoryAdapter(
     return conceptRepository.save(ConceptEntity.fromDomain(concept)).toDomain()
   }
 
+  override fun saveAll(concepts: List<Concept>): List<Concept> {
+    return conceptRepository.saveAll(concepts.map { ConceptEntity.fromDomain(it) }.toList()).map { it.toDomain() }
+  }
+
   override fun findAll(): List<Concept> {
     return conceptRepository.findAll().map(ConceptEntity::toDomain)
   }
@@ -25,5 +29,9 @@ class ConceptRepositoryAdapter(
 
   override fun existsByIli(ili: String): Boolean {
     return conceptRepository.existsByIli(ili)
+  }
+
+  override fun findExistingIlis(uniqueIlis: List<String>): List<Concept> {
+    return conceptRepository.findAllById(uniqueIlis).map { it.toDomain() }
   }
 }

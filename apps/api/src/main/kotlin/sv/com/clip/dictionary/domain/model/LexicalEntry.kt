@@ -27,19 +27,21 @@ value class LexicalEntryId(val value: UUID) : Identifier {
 // Lexical Markup Framework ISO 24613
 @AggregateRoot // gestiona el termino el lemma y su fonetica -- es la entrada principal del vocabulario
 class LexicalEntry(
-  val lexicalEntryId: LexicalEntryId = LexicalEntryId.generate(),
+  val id: LexicalEntryId = LexicalEntryId.generate(),
   val sourceId: String?, // OMW WordNet 3.0
   val lemma: String, // bank
   val lexiconId: LexiconId,
   val partOfSpeech: PartOfSpeech,
   // Representa las formas de la palabra (variantes)
-  private val _forms: List<Form> = mutableListOf(), // banks
+  forms: List<Form> = emptyList(), // banks
   // bank, banks, banked, banking
   // Representa los significados asociados
-  private val _senses: MutableList<Sense> = mutableListOf(),
+  senses: List<Sense> = emptyList(),
   // noun: financial institution
   // verb: to deposit money
 ) {
+  private val _forms: MutableList<Form> = forms.toMutableList()
+  private val _senses: MutableList<Sense> = senses.toMutableList()
   val senses: List<Sense> get() = _senses.toList()
   val forms: List<Form> get() = _forms.toList()
 }

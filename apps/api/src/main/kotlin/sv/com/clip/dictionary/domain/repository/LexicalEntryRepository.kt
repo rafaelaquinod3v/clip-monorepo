@@ -5,6 +5,7 @@ import sv.com.clip.dictionary.domain.model.LexicalEntry
 
 @Repository
 interface LexicalEntryRepository {
-  fun save(lexicon: LexicalEntry) : LexicalEntry
+  fun save(lexicalEntry: LexicalEntry) : LexicalEntry
   fun findAll() : List<LexicalEntry> // TODO: pagination,
+  fun saveAll(list: List<LexicalEntry>) : List<LexicalEntry>
 }

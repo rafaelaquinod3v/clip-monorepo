@@ -117,3 +117,47 @@
   font-size: 13px;
   color: #444;
 }
+
+
+/* Estilo del Select */
+.mat-select-language {
+  appearance: none; /* Elimina la flecha por defecto del sistema */
+  background-color: #f3f3f8; /* Color de superficie Material Tonal */
+  border: 1px solid #74777f; /* Outline estándar de MD3 */
+  border-radius: 8px; /* Bordes redondeados modernos */
+  color: #1b1b1f;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  height: 48px; /* Altura estándar de toque (48dp) */
+  min-width: 120px;
+  padding: 0 40px 0 16px;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  
+  /* Icono de flecha personalizado (Material Icons style) */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org' viewBox='0 0 24 24' fill='%2344474e'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 24px;
+}
+
+/* Estado Focus (Cuando el usuario hace clic) */
+.mat-select-language:focus {
+  outline: none;
+  border: 2px solid #6750a4; /* Color Primario Material */
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Estado Hover */
+.mat-select-language:hover {
+  background-color: #e8e8f0;
+  border-color: #1b1b1f;
+}
+
+/* Opciones del menú (Limitado por el navegador, pero limpio) */
+.mat-select-language option {
+  padding: 12px;
+  background-color: #fff;
+}

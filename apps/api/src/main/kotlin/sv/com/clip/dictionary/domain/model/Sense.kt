@@ -31,10 +31,10 @@ value class SenseId(val value: UUID) : Identifier {
 @Entity
 class Sense(
   val id: SenseId = SenseId.generate(),
-  val sourceId: String?, // OMW WordNet 3.0
+  val sourceId: String? = null, // OMW WordNet 3.0
   val conceptIli: String, // FK: Referencia obligatoria a Concept.iliId
-  val gloss: String?, // financial institution, bank (money)
-  val definition: String?, // An establishment for the custody, loan, or exchange of money.
+  val gloss: String? = null, // financial institution, bank (money)
+  val definition: String? = null, // An establishment for the custody, loan, or exchange of money.
   val examples: List<UsageExample> = mutableListOf(),
 ) {
 }

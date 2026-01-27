@@ -8,9 +8,10 @@ export class FileOmwService {
   private apiUrl = "http://localhost:8080/vocabulary/import-omw-json";
   constructor(private http: HttpClient) {}
 
-  upload(file: File) {
+  upload(file: File, lang: string) {
     const formData = new FormData();
     formData.append('file', file);
+    formData.append('lang', lang);
     return this.http.post(this.apiUrl, formData, {
       reportProgress: true,
       observe: 'events'

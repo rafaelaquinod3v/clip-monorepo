@@ -11,6 +11,7 @@ import { ProgressOmwService } from '../services/progress-omw-service';
   styleUrl: './dashboard.css',
 })
 export class Dashboard {
+  selectedLang: string = 'EN'; 
   selectedFile: File | null = null;
   progress: number = 0;
   mensaje: string = '';
@@ -35,7 +36,7 @@ export class Dashboard {
     this.mensaje = 'Subiendo...';
 
     if (this.selectedFile) {
-      this.fileService.upload(this.selectedFile).subscribe({
+      this.fileService.upload(this.selectedFile, this.selectedLang).subscribe({
         next: (event: any) => {
           if (event.type === HttpEventType.UploadProgress) {
             // Calcular el porcentaje

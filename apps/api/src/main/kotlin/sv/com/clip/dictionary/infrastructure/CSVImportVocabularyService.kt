@@ -4,12 +4,11 @@ import com.opencsv.bean.CsvToBeanBuilder
 import org.springframework.stereotype.Service
 import sv.com.clip.dictionary.domain.model.Word
 import sv.com.clip.dictionary.domain.repository.WordRepository
-import sv.com.clip.dictionary.domain.valueObjects.CEFRLevel
 import sv.com.clip.dictionary.domain.valueObjects.PartOfSpeech
 import java.io.FileReader
 
 @Service
-class ImportVocabularyService(private val wordRepository: WordRepository, private val embedding: DjlEmbeddingAdapter) {
+class CSVImportVocabularyService(private val wordRepository: WordRepository, private val embedding: DjlEmbeddingAdapter) {
   val RUTA_ARCHIVO: String = "/home/rafae/code/english-learning/clip-monorepo/python_utils/ENGLISH_CERF_WORDS_LEMMA_POS.csv"
   fun obtenerLista(): List<WordCSV> {
     return try {

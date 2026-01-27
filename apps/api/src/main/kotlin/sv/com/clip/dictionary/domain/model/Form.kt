@@ -25,7 +25,7 @@ value class FormId(val value: UUID) : Identifier {
 class Form(
   val id: FormId = FormId.generate(),
   val writtenRepresentation: String,
-  val script: String?,
+  val script: String? = null,
   val phoneticIPA: String? = null,
   val audioURL: String? = null,
   ) {
