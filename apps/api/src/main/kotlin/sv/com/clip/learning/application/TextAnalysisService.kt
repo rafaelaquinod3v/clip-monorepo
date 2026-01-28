@@ -8,7 +8,6 @@ import sv.com.clip.learning.domain.WordStatus
 import sv.com.clip.learning.domain.events.WordsNotFoundEvent
 import sv.com.clip.learning.domain.repository.UserWordRepository
 import sv.com.clip.learning.infrastructure.UserWordExclusionAdapter
-import sv.com.clip.learning.infrastructure.repository.JpaUserWordExclusionRepository
 import java.util.UUID
 
 @Service
@@ -47,19 +46,50 @@ class TextAnalysisService(
     val wordDetails = dictionaryExternal.getWords(wordsToQuery)
 
     // 5. Clasificar sin crear dependencia circular
+//    val classifiedWords = allUniqueWords.map { word ->
+//      val dictEntry = wordDetails.find { it.word == word }
+//      val userEntry = userKnownWords[word]
+//      when {
+//        word in excluded -> WordAnalysis(word, "Excluido", WordStatus.IGNORED)
+//        dictEntry == null -> WordAnalysis(word, "No encontrada en el diccionario", WordStatus.NOT_FOUND)
+//        else -> WordAnalysis(
+//          word = word,
+//          definition = dictEntry.definition,
+//          status = userEntry?.status ?: WordStatus.NEW
+//        )
+//      }
+//    }
+    // 5. Clasificar con soporte para Diccionario Personal
     val classifiedWords = allUniqueWords.map { word ->
       val dictEntry = wordDetails.find { it.word == word }
       val userEntry = userKnownWords[word]
+
       when {
-        word in excluded -> WordAnalysis(word, "Excluido", WordStatus.IGNORED)
-        dictEntry == null -> WordAnalysis(word, "No encontrada en el diccionario", WordStatus.NOT_FOUND)
-        else -> WordAnalysis(
-          word = word,
-          definition = dictEntry.definition,
-          status = userEntry?.status ?: WordStatus.NEW
-        )
+        word in excluded ->
+          WordAnalysis(word, "Excluido", WordStatus.IGNORED)
+
+        // Caso: No está en Dictionary oficial, pero el usuario ya la creó antes
+        dictEntry == null && userEntry != null ->
+          WordAnalysis(
+            word = word,
+            definition = userEntry.customDefinition ?: "Definición personal",
+            status = userEntry.status
+          )
+
+        // Caso: No existe en ningún lado
+        dictEntry == null ->
+          WordAnalysis(word, "No encontrada", WordStatus.NOT_FOUND)
+
+        // Caso: Existe en Dictionary oficial
+        else ->
+          WordAnalysis(
+            word = word,
+            definition = dictEntry.definition,
+            status = userEntry?.status ?: WordStatus.NEW
+          )
       }
     }
+
 
     // 6. Generar el resumen (Summary)
     val summary = calculateSummary(classifiedWords, tokens.size)

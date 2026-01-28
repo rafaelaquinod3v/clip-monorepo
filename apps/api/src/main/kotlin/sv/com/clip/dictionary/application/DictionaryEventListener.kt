@@ -24,6 +24,7 @@ class DictionaryEventListener(
   @ApplicationModuleListener
   fun onWordsNotFound(event: WordsNotFoundEvent) {
     println("EVENTO RECIBIDO!") // Debería imprimirse inmediatamente
+    println("Telemetria") // TODO:
     val lexicon = lexiconProvider.findByLang(Language.EN) ?: return
     val newEntries = event.words.map { term ->
         LexicalEntry(
@@ -38,10 +39,8 @@ class DictionaryEventListener(
 //        addSense(SenseEntity(definition = "Pending review", lexicalEntryEntity = this))
 //      }
     // 3. Persistimos la lista limpia
-    if (newEntries.isNotEmpty()) {
-      repository.saveAll(newEntries)
-//      newEntries.forEach { entry -> println(entry.lemma)}
-    }
-//    repository.saveAll(newEntries)
+//    if (newEntries.isNotEmpty()) {
+//      repository.saveAll(newEntries)
+//    }
   }
 }
