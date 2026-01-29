@@ -68,6 +68,7 @@ dependencies {
   implementation("org.jmolecules.integrations:jmolecules-jpa")
 
   // --- Utilidades ---
+  implementation("org.springframework.boot:spring-boot-starter-validation")
   implementation("com.github.therealbush:translator:1.0.2")
   implementation("com.fasterxml.uuid:java-uuid-generator:5.1.0")
   implementation("com.opencsv:opencsv:5.9")

@@ -10,4 +10,5 @@ interface UserWordRepository {
   fun findAllByTermIn(terms: Set<String>) : List<UserWord>
   fun save(userWord: UserWord): UserWord
   fun findAllByUserId(userId: UUID): List<UserWord>
+  fun deleteByUserIdAndTerm(userId: UUID, term: String)
 }

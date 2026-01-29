@@ -13,14 +13,18 @@ class UserWordExclusionAdapter(
   override fun findExclusions(
     userId: UUID, //TODO: use this
   ): Set<String> {
-    return exclusionRepository.findAll().map { it.word }.toSet()
+    return exclusionRepository.findAll().map { it.term }.toSet()
   }
 
-  override fun saveExclusion(userId: UUID, word: String) {
-    exclusionRepository.save(UserWordExclusionEntity(UUID.randomUUID(), userId, word))
+  override fun saveExclusion(userId: UUID, term: String) {
+    exclusionRepository.save(UserWordExclusionEntity(UUID.randomUUID(), userId, term))
   }
 
-  override fun isExcluded(userId: UUID, word: String): Boolean {
+  override fun deleteExclusion(userId: UUID, term: String) {
+    exclusionRepository.deleteByTerm(term)
+  }
+
+  override fun isExcluded(userId: UUID, term: String): Boolean {
     // return repo.existsByUserIdAndWord(userId, word)
     TODO("Not yet implemented")
   }

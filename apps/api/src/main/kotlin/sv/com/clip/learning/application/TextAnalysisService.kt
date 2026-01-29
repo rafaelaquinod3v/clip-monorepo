@@ -40,41 +40,33 @@ class TextAnalysisService(
     println("UserId: $userId")
     val userKnownWords = userWordRepository.findAllByTermIn(wordsToQuery) // TODO: userId
 //      .associateBy { it.lexicalEntryId }
-      .associateBy { it.term }
+      .associateBy { it.term.lowercase().trim() }
 
     //  -- Consultar datos técnicos al módulo Dictionary
     val wordDetails = dictionaryExternal.getWords(wordsToQuery)
 
     // 5. Clasificar sin crear dependencia circular
-//    val classifiedWords = allUniqueWords.map { word ->
-//      val dictEntry = wordDetails.find { it.word == word }
-//      val userEntry = userKnownWords[word]
-//      when {
-//        word in excluded -> WordAnalysis(word, "Excluido", WordStatus.IGNORED)
-//        dictEntry == null -> WordAnalysis(word, "No encontrada en el diccionario", WordStatus.NOT_FOUND)
-//        else -> WordAnalysis(
-//          word = word,
-//          definition = dictEntry.definition,
-//          status = userEntry?.status ?: WordStatus.NEW
-//        )
-//      }
-//    }
+
     // 5. Clasificar con soporte para Diccionario Personal
-    val classifiedWords = allUniqueWords.map { word ->
-      val dictEntry = wordDetails.find { it.word == word }
+    val classifiedWords = allUniqueWords.map { rawWord ->
+      val word = rawWord.lowercase().trim() // <--- NORMALIZACIÓN CRUCIAL
+
+      val dictEntry = wordDetails.find { it.word.lowercase().trim() == word }
       val userEntry = userKnownWords[word]
+      val isExcluded = word in excluded
 
       when {
-        word in excluded ->
-          WordAnalysis(word, "Excluido", WordStatus.IGNORED)
+        // Si el usuario tiene un registro activo de aprendizaje, manda sobre la exclusión
+        userEntry != null -> WordAnalysis(
+          word = word,
+          definition = userEntry.customDefinition ?: dictEntry?.definition ?: "Sin definición",
+          status = userEntry.status
+        )
 
-        // Caso: No está en Dictionary oficial, pero el usuario ya la creó antes
-        dictEntry == null && userEntry != null ->
-          WordAnalysis(
-            word = word,
-            definition = userEntry.customDefinition ?: "Definición personal",
-            status = userEntry.status
-          )
+        isExcluded -> WordAnalysis(word, "Excluido", WordStatus.IGNORED)
+
+        // Caso: No está en Dictionary oficial
+
 
         // Caso: No existe en ningún lado
         dictEntry == null ->
@@ -85,7 +77,7 @@ class TextAnalysisService(
           WordAnalysis(
             word = word,
             definition = dictEntry.definition,
-            status = userEntry?.status ?: WordStatus.NEW
+            status = WordStatus.NEW
           )
       }
     }
@@ -105,7 +97,7 @@ class TextAnalysisService(
         eventPublisher.publishEvent(WordsNotFoundEvent(batch.toSet()))
       }
     }
-    return AnalysisResult(classifiedWords, summary)
+    return AnalysisResult(classifiedWords, rawText, summary)
   }
   private fun calculateSummary(classified: List<WordAnalysis>, totalTokens: Int): AnalysisSummary {
     val knownCount = classified.count { it.status == WordStatus.KNOWN }

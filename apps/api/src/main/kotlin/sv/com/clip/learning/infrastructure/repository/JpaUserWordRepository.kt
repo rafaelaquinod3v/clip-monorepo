@@ -6,4 +6,7 @@ import java.util.UUID
 
 interface JpaUserWordRepository : JpaRepository<UserWordEntity, UUID> {
   fun findAllByTermIn(terms: Set<String>) : List<UserWordEntity>
+  fun deleteByUserIdAndTerm(userId: UUID, term: String)
+  fun findByUserIdAndTerm(userId: UUID, term: String)
+  fun findByTerm(term: String): UserWordEntity?
 }

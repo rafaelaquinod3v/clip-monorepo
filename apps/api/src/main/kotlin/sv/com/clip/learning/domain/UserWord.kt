@@ -6,11 +6,11 @@ import java.util.UUID
 @AggregateRoot
 class UserWord(
   val id: UUID = UUID.randomUUID(),
-  val userId: UUID? = null,
+  val userId: UUID,
   val term: String,
   var status: WordStatus = WordStatus.NEW,
   val isManualLexicalEntry: Boolean = false, // si esto es verdadero, se deben llenar los siguientes
-  val customDefinition: String? = null,
+  var customDefinition: String? = null,
   val lexicalEntryId: UUID? = null, // referencia ligera (id) al dictionary
   val sourceLanguage: String? = null,
   val targetLanguage: String? = null,

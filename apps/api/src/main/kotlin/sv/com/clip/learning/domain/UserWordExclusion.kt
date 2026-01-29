@@ -7,5 +7,5 @@ import java.util.UUID
 class UserWordExclusion(
   val id: UUID,
   val userId: UUID,
-  val word: String, // Example: "Google", "Paris", "Rodrigo"
+  val term: String, // Example: "Google", "Paris", "Rodrigo"
 ) {}
